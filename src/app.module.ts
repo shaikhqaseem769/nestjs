@@ -5,6 +5,7 @@ import { AppService } from './test/app.service';
 import { TasksModule } from './tasks/tasks.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ActivityModule } from './activity/activity.module';
 
 @Module({
   imports: [
@@ -12,7 +13,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       envFilePath: [`.env.stage.${process.env.STAGE}`]
     }),
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
+      imports: [ConfigModule, ActivityModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
         
